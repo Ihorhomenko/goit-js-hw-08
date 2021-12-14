@@ -5,10 +5,9 @@ const refs = {
   textarea: document.querySelector('textarea'),
   form: document.querySelector('.feedback-form'),
 };
+const formdata = {};
 
 onDownloadPage();
-
-const formdata = {};
 
 function onFormInput(e) {
   formdata[e.target.name] = e.target.value;
@@ -26,6 +25,8 @@ function onDownloadPage() {
   const savedDataForm = localStorage.getItem('feedback-form-state');
 
   if (savedDataForm) {
+    formdata.email = JSON.parse(localStorage.getItem('feedback-form-state')).email;
+    formdata.message = JSON.parse(localStorage.getItem('feedback-form-state')).message;
     refs.input.value = JSON.parse(localStorage.getItem('feedback-form-state')).email;
     refs.textarea.value = JSON.parse(localStorage.getItem('feedback-form-state')).message;
   }
