@@ -22,13 +22,15 @@ function onFormSubmit(e) {
 }
 
 function onDownloadPage() {
-  const savedDataForm = localStorage.getItem('feedback-form-state');
+  const savedDataForm = JSON.parse(localStorage.getItem('feedback-form-state'));
 
   if (savedDataForm) {
-    formdata.email = JSON.parse(localStorage.getItem('feedback-form-state')).email;
-    formdata.message = JSON.parse(localStorage.getItem('feedback-form-state')).message;
-    refs.input.value = JSON.parse(localStorage.getItem('feedback-form-state')).email;
-    refs.textarea.value = JSON.parse(localStorage.getItem('feedback-form-state')).message;
+    const { email, message } = savedDataForm;
+
+    formdata.email = email;
+    formdata.message = message;
+    refs.input.value = email;
+    refs.textarea.value = message;
   }
 }
 
